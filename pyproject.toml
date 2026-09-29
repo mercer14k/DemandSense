@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "demandsense"
+version = "0.1.0"
+description = "Demand forecasts you can challenge: uncertainty, backtests, and local AI."
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.10,<3",
+  "numpy>=2.1,<3", "scikit-learn>=1.6,<2", "sqlalchemy>=2.0,<3",
+  "psycopg[binary]>=3.2,<4", "httpx>=0.28,<1", "python-multipart>=0.0.20,<1"
+]
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "pip-audit>=2.8,<3"]
+[tool.setuptools.packages.find]
+where = ["packages", "."]
+include = ["demandsense*", "apps.api*"]
+[tool.pytest.ini_options]
+pythonpath = ["packages", "."]
+testpaths = ["tests"]
+[tool.ruff]
+line-length = 110
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

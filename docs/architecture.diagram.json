@@ -1,0 +1,8 @@
+{
+ "version": 2,
+ "title": "DemandSense architecture",
+ "diagrams": [{
+   "id": "demandsense-architecture", "title": "Local demand planning workflow", "kind": "raw",
+   "source": "flowchart LR\n    D[Daily demand and provenance] --> V[Validation reports]\n    V --> DB[(PostgreSQL or SQLite)]\n    DB --> S[Forecast service]\n    S --> F[Statistical and ML models]\n    F --> B[Calibration and rolling backtests]\n    B --> R[Immutable forecast and evidence]\n    R --> UI[React planning workbench]\n    UI --> SC[Typed scenario assumptions]\n    SC --> S\n    R --> INV[Inventory REST API]\n    R --> AI[Optional local model adapter]\n    AI --> O[Ollama or llama.cpp or vLLM]\n    AI --> E[Schema and citation validation]\n    E --> UI\n"
+ }]
+}

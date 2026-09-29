@@ -1,0 +1,40 @@
+{
+  "hardware": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.14",
+  "config": {
+    "runtime": "ollama",
+    "model": "qwen3:8b",
+    "list": false,
+    "repeats": 1,
+    "output": "docs/benchmarks/local-ai.json"
+  },
+  "results": [
+    {
+      "telemetry": {
+        "runtime": "ollama",
+        "model": "qwen3:8b",
+        "prompt_version": "evidence-only-v1",
+        "trace_id": null,
+        "input_source_ids": [
+          "ai-benchmark-seed42"
+        ],
+        "tool_calls": [],
+        "retries": 0,
+        "validation_failures": 0,
+        "status": "validated",
+        "temperature": 0,
+        "seed": 42,
+        "output_tokens": 483,
+        "input_tokens": 377,
+        "model_digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "latency_ms": 27882.16,
+        "id": "b075c6d2-33a7-44ff-bd00-958ba6f9b45e"
+      },
+      "mode": "local_ai",
+      "claims": 5,
+      "abstained": false,
+      "deterministic_state_unchanged": true
+    }
+  ],
+  "limitation": "Schema and citation validation only; this is not a semantic faithfulness or model-quality benchmark."
+}
