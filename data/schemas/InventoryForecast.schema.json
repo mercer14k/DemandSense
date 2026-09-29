@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "ForecastPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "point": {
+          "minimum": 0,
+          "title": "Point",
+          "type": "number"
+        },
+        "lower80": {
+          "minimum": 0,
+          "title": "Lower80",
+          "type": "number"
+        },
+        "upper80": {
+          "minimum": 0,
+          "title": "Upper80",
+          "type": "number"
+        },
+        "lower95": {
+          "minimum": 0,
+          "title": "Lower95",
+          "type": "number"
+        },
+        "upper95": {
+          "minimum": 0,
+          "title": "Upper95",
+          "type": "number"
+        }
+      },
+      "required": [
+        "date",
+        "point",
+        "lower80",
+        "upper80",
+        "lower95",
+        "upper95"
+      ],
+      "title": "ForecastPoint",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "dataset_id": {
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "sku": {
+      "title": "Sku",
+      "type": "string"
+    },
+    "location": {
+      "title": "Location",
+      "type": "string"
+    },
+    "engine_version": {
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "units": {
+      "const": "units/day",
+      "default": "units/day",
+      "title": "Units",
+      "type": "string"
+    },
+    "point_statistic": {
+      "const": "conditional_mean_estimate",
+      "default": "conditional_mean_estimate",
+      "title": "Point Statistic",
+      "type": "string"
+    },
+    "interval_type": {
+      "const": "marginal_empirical",
+      "default": "marginal_empirical",
+      "title": "Interval Type",
+      "type": "string"
+    },
+    "forecast": {
+      "items": {
+        "$ref": "#/$defs/ForecastPoint"
+      },
+      "title": "Forecast",
+      "type": "array"
+    },
+    "warning": {
+      "title": "Warning",
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_id",
+    "dataset_id",
+    "sku",
+    "location",
+    "engine_version",
+    "forecast",
+    "warning"
+  ],
+  "title": "InventoryForecast",
+  "type": "object"
+}

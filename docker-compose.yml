@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: demandsense
+      POSTGRES_USER: demandsense
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-demandsense-local-only}
+      DB_READER_PASSWORD: ${DB_READER_PASSWORD:-demandsense-reader-local-only}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/postgres:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U demandsense -d demandsense"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://demandsense:${DB_PASSWORD:-demandsense-local-only}@db:5432/demandsense
+      DATABASE_READ_URL: postgresql+psycopg://demandsense_reader:${DB_READER_PASSWORD:-demandsense-reader-local-only}@db:5432/demandsense
+      DEMO_MODE: ${DEMO_MODE:-true}
+      DEMO_SKUS: ${DEMO_SKUS:-500}
+      DEMO_DAYS: ${DEMO_DAYS:-196}
+      SEED: ${SEED:-42}
+      WRITE_TOKEN: ${WRITE_TOKEN:-local-demo-change-me}
+      READ_TOKEN: ${READ_TOKEN:-}
+      OLLAMA_URL: http://host.docker.internal:11434
+      OPENAI_LOCAL_URL: http://host.docker.internal:8080
+      LOCAL_RUNTIME_HOSTS: localhost,127.0.0.1,host.docker.internal,ollama,llama,vllm
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    ports: ["127.0.0.1:8027:8027"]
+    depends_on:
+      db: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8027/ready')"]
+      start_period: 120s
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    security_opt: ["no-new-privileges:true"]
+    read_only: true
+    tmpfs: [/tmp]
+    restart: unless-stopped
+  web:
+    build: ./apps/web
+    ports: ["127.0.0.1:5187:8080"]
+    depends_on:
+      api: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, "http://127.0.0.1:8080/"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+volumes:
+  postgres_data:

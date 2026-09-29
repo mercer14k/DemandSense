@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "dataset_id": {
+      "default": "demo-v1-seed42",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "sku": {
+      "maxLength": 80,
+      "title": "Sku",
+      "type": "string"
+    },
+    "location": {
+      "maxLength": 80,
+      "title": "Location",
+      "type": "string"
+    },
+    "horizon": {
+      "default": 14,
+      "maximum": 28,
+      "minimum": 7,
+      "title": "Horizon",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "sku",
+    "location"
+  ],
+  "title": "RunRequest",
+  "type": "object"
+}

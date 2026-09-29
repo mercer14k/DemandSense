@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: demandsense
+Version: 0.1.0
+Summary: Demand forecasts you can challenge: uncertainty, backtests, and local AI.
+License-Expression: MIT
+Requires-Python: >=3.11
+Requires-Dist: fastapi<1,>=0.115
+Requires-Dist: uvicorn<1,>=0.34
+Requires-Dist: pydantic<3,>=2.10
+Requires-Dist: numpy<3,>=2.1
+Requires-Dist: scikit-learn<2,>=1.6
+Requires-Dist: sqlalchemy<3,>=2.0
+Requires-Dist: psycopg[binary]<4,>=3.2
+Requires-Dist: httpx<1,>=0.28
+Requires-Dist: python-multipart<1,>=0.0.20
+Provides-Extra: dev
+Requires-Dist: pytest<10,>=8.3; extra == "dev"
+Requires-Dist: pytest-cov<8,>=6; extra == "dev"
+Requires-Dist: ruff<1,>=0.11; extra == "dev"
+Requires-Dist: pip-audit<3,>=2.8; extra == "dev"

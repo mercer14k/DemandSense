@@ -1,0 +1,6 @@
+record_id,dataset_id,sku,location,date,demand,promotion,stockout
+bad-negative,invalid-demo,SKU-EDGE,CHI,2025-01-01,-5,false,false
+bad-date,invalid-demo,SKU-EDGE,CHI,not-a-date,10,false,false
+bad-nan,invalid-demo,SKU-EDGE,CHI,2025-01-03,NaN,false,false
+bad-duplicate,invalid-demo,SKU-EDGE,CHI,2025-01-04,0,false,false
+bad-duplicate,invalid-demo,SKU-EDGE,CHI,2025-01-04,1,false,false

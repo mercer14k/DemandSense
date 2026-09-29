@@ -1,0 +1,82 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "record_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Record Id",
+      "type": "string"
+    },
+    "dataset_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "pattern": "^[\\w.-]+$",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "sku": {
+      "maxLength": 80,
+      "minLength": 1,
+      "pattern": "^[\\w.-]+$",
+      "title": "Sku",
+      "type": "string"
+    },
+    "location": {
+      "maxLength": 80,
+      "minLength": 1,
+      "pattern": "^[\\w.-]+$",
+      "title": "Location",
+      "type": "string"
+    },
+    "date": {
+      "format": "date",
+      "title": "Date",
+      "type": "string"
+    },
+    "demand": {
+      "maximum": 1000000000.0,
+      "minimum": 0,
+      "title": "Demand",
+      "type": "number"
+    },
+    "promotion": {
+      "default": false,
+      "title": "Promotion",
+      "type": "boolean"
+    },
+    "stockout": {
+      "default": false,
+      "title": "Stockout",
+      "type": "boolean"
+    },
+    "ingested_at": {
+      "format": "date-time",
+      "title": "Ingested At",
+      "type": "string"
+    },
+    "validation_status": {
+      "default": "valid",
+      "enum": [
+        "valid",
+        "warning"
+      ],
+      "title": "Validation Status",
+      "type": "string"
+    },
+    "provenance": {
+      "additionalProperties": true,
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "required": [
+    "record_id",
+    "dataset_id",
+    "sku",
+    "location",
+    "date",
+    "demand"
+  ],
+  "title": "Observation",
+  "type": "object"
+}

@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "kind": {
+      "default": "manual",
+      "enum": [
+        "promotion",
+        "event",
+        "manual"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "uplift_pct": {
+      "maximum": 300,
+      "minimum": -100,
+      "title": "Uplift Pct",
+      "type": "number"
+    },
+    "start_day": {
+      "default": 1,
+      "maximum": 28,
+      "minimum": 1,
+      "title": "Start Day",
+      "type": "integer"
+    },
+    "end_day": {
+      "default": 14,
+      "maximum": 28,
+      "minimum": 1,
+      "title": "End Day",
+      "type": "integer"
+    },
+    "note": {
+      "default": "",
+      "maxLength": 500,
+      "title": "Note",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "uplift_pct"
+  ],
+  "title": "ScenarioInput",
+  "type": "object"
+}

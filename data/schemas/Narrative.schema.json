@@ -1,0 +1,61 @@
+{
+  "$defs": {
+    "EvidenceClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "interpretation": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Interpretation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "interpretation"
+      ],
+      "title": "EvidenceClaim",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "maxLength": 1200,
+      "title": "Summary",
+      "type": "string"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/EvidenceClaim"
+      },
+      "maxItems": 8,
+      "title": "Claims",
+      "type": "array"
+    },
+    "abstained": {
+      "title": "Abstained",
+      "type": "boolean"
+    },
+    "caveats": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "title": "Caveats",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "claims",
+    "abstained",
+    "caveats"
+  ],
+  "title": "Narrative",
+  "type": "object"
+}
